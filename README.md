@@ -22,7 +22,7 @@ You can set the backup_dir environment variable or enter the path manually when 
 
  # For Unix-based systems
 
-        python find_duplicates_advanced.py export backup_dir=/path/to/extracted/files  
+    python find_duplicates_advanced.py export backup_dir=/path/to/extracted/files  
 
 or
    
