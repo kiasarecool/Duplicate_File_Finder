@@ -14,6 +14,9 @@ def install_tqdm():
 install_tqdm()
 from tqdm import tqdm
 
+# Supported image and video file types
+SUPPORTED_FILE_TYPES = {'.jpg', '.jpeg', '.png', '.gif', '.webp', '.bmp', '.tiff', '.tif', '.ico', '.svg', '.mp4', '.mov', '.avi', '.wmv', '.flv', '.mkv', '.webm'}
+
 def hash_file(file_path):
     """Generate a hash for a given file."""
     hash_algo = hashlib.sha256()
@@ -34,6 +37,9 @@ def find_duplicates(directory):
         for root, _, files in os.walk(directory):
             for file in files:
                 file_path = os.path.join(root, file)
+                # Skip hidden files and unsupported file types
+                if file.startswith('.') or not os.path.splitext(file)[1].lower() in SUPPORTED_FILE_TYPES:
+                    continue
                 file_hash = hash_file(file_path)
                 if file_hash in files_by_hash:
                     duplicates.append((file_path, files_by_hash[file_hash]))
@@ -91,14 +97,17 @@ def main():
         if action == 'remove':
             # Use a set to track deleted files and avoid multiple deletions
             deleted_files = set()
+            num_deleted = 0
             for _, duplicate in duplicates:
                 if duplicate not in deleted_files and is_safe_to_delete(duplicate, safe_directories):
                     print(f"Deleting duplicate: {duplicate}")
                     os.remove(duplicate)
                     deleted_files.add(duplicate)
+                    num_deleted += 1
                     print("-" * 50)
                 else:
                     print(f"Skipping deletion of: {duplicate}")
+            print(f"Total number of duplicate files deleted: {num_deleted}")
         elif action == 'list':
             print("Find and List mode: No files were deleted.")
         else:
