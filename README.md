@@ -9,8 +9,10 @@ This script is designed to find and optionally remove duplicate media files in a
 ## Installation
 
 1. **Clone the Repository:**
-Install Required Packages:
-• Python
+
+    Install Required Packages:
+
+        • Python
 
 ## Usage
 Set the Backup Directory:
