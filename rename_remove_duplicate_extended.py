@@ -1,5 +1,6 @@
 import os
 import hashlib
+import re
 import subprocess
 import sys
 
@@ -112,11 +113,18 @@ def rename_files_in_directory(directory, conflict_action):
     return interacted_files
 
 def main():
-    backup_dir = os.getenv('backup_dir')
-    if not backup_dir:
-        backup_dir = input("Please enter the path to your extracted files: ")
+    backup_dir = input("Please enter the path to the directory with the files to rename: ")
     if not os.path.exists(backup_dir):
         print(f"The path {backup_dir} does not exist. Please check and try again.")
+        return
+
+    print("If a file with the new name already exists, what do you want to do?")
+    print("1) Skip + Delete badname file")
+    print("2) Overwrite existing file")
+    print("3) Ask every time")
+    conflict_action = int(input("Enter the number of your choice: ").strip())
+    if conflict_action not in [1, 2, 3]:
+        print("Invalid choice. Please enter 1, 2, or 3.")
         return
 
     # Ask the user if they want to analyze everything or just the wp-content/uploads folder
@@ -137,6 +145,10 @@ def main():
         return
 
     while True:
+        # First clean the filenames
+        rename_files_in_directory(analysis_dir, conflict_action)
+
+        # Then find and remove duplicates
         duplicates = find_duplicates(analysis_dir)
         if not duplicates:
             print("No duplicates found.")
