@@ -109,7 +109,7 @@ def main():
         return
 
     print("If a file with the new name already exists, what do you want to do?")
-    print("1) Skip renaming")
+    print("1) Just Delete the bad name file")
     print("2) Overwrite existing file")
     print("3) Ask every time")
     conflict_action = int(input("Enter the number of your choice: ").strip())
@@ -165,12 +165,12 @@ def main():
                 else:
                     print(f"Skipping deletion of: {duplicate}")
             total_deleted_files += num_deleted
-            print(f"Total number of duplicate files deleted: {total_deleted_files}")
+            print(f"Total number of duplicate files deleted so far: {total_deleted_files}")
         elif action == 'list':
             print("Find and List mode: No files were deleted.")
             break
 
-    total_remaining_files = total_initial_files - total_deleted_files
+    total_remaining_files = sum([len(files) for _, _, files in os.walk(analysis_dir)])
 
     print(f"\nSummary:")
     print(f"Total initial files: {total_initial_files}")
