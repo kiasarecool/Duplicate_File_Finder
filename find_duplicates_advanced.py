@@ -58,14 +58,26 @@ def main():
         print(f"The path {backup_dir} does not exist. Please check and try again.")
         return
 
+    # Ask the user if they want to analyze everything or just the wp-content/uploads folder
+    analysis_choice = input("Would you like to analyze everything or just the 'wp-content/uploads' folder? (everything/uploads): ").strip().lower()
+
+    if analysis_choice == 'uploads':
+        analysis_dir = os.path.join(backup_dir, 'wp-content', 'uploads')
+    else:
+        analysis_dir = backup_dir
+
+    if not os.path.exists(analysis_dir):
+        print(f"The path {analysis_dir} does not exist. Please check and try again.")
+        return
+
     # Define directories where deletions are safe
     safe_directories = [
-        os.path.join(backup_dir, 'uploads/'),
-        os.path.join(backup_dir, 'images/'),
+        os.path.join(backup_dir, 'wp-content', 'uploads'),
+        os.path.join(backup_dir, 'images'),
         # Add more directories as needed
     ]
 
-    duplicates = find_duplicates(backup_dir)
+    duplicates = find_duplicates(analysis_dir)
     if duplicates:
         print("Duplicate files found:")
         for original, duplicate in duplicates:
@@ -73,8 +85,10 @@ def main():
             print(f"Duplicate: {duplicate}")
             print("-" * 50)
 
-        action = input("Do you want to delete duplicates from folders named 'uploads' and 'images'? (yes/no): ").strip().lower()
-        if action == 'yes':
+        print(f"Total number of duplicate files found: {len(duplicates)}")
+
+        action = input("Do you want to 'Find and List' (no actual deletion) or 'Find and Remove' (delete duplicates)? (list/remove): ").strip().lower()
+        if action == 'remove':
             # Use a set to track deleted files and avoid multiple deletions
             deleted_files = set()
             for _, duplicate in duplicates:
