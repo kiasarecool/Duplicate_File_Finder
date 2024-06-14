@@ -20,14 +20,17 @@ You can set the backup_dir environment variable or enter the path manually when 
 
 ## Set the Environment Variable:
 
+    # For Unix-based systems
+    
         python find_duplicates_advanced.py export backup_dir=/path/to/extracted/files  
 
-    # For Unix-based systems
+   
+    # For Windows
 
         python find_duplicates_advanced.py set backup_dir=C:\\path\\to\\extracted\\files  
 
-    # For Windows
-    
+   
+
 Or Enter the Path Manually when asked:
 If you do not set the environment variable, the script will prompt you to enter the path when you run it.
 
