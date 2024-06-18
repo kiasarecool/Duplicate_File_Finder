@@ -86,6 +86,7 @@ If a file with the new name already exists, what do you want to do?
 1) Just Delete the bad name file
 2) Overwrite existing file
 3) Ask every time
+
 **Enter the number of your choice:** 2
 
 **Would you like to analyze everything or just the 'wp-content/uploads' folder? (everything/uploads):** uploads
@@ -98,8 +99,11 @@ If a file with the new name already exists, what do you want to do?
 After processing, the script provides a summary including:
 
 Total initial files:   126058
+
 Total files renamed:   15269
+
 Total files deleted:   36095
+
 Total remaining files: 74667
 
 
