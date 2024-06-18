@@ -72,7 +72,8 @@ Renames files in the specified directory based on the cleaning criteria. Handles
 main()
 
 The main function that orchestrates the renaming and duplicate detection processes.
-Example Usage
+
+# Example Usage
 
 ## Starting the Script: 
 
