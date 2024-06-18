@@ -1,13 +1,12 @@
 # Overview
-This script is designed to process image and video files within a specified directory. It can:
-
-Clean up filenames by removing specific redundant parts.
-Detect and handle filename conflicts.
-Identify and list or remove duplicate files based on their hash values.
+This script is designed to process image and video files within a specified directory. It can: 
+• Clean up filenames by removing specific redundant parts.
+• Detect and handle filename conflicts.
+• Identify and list or remove duplicate files based on their hash values.
 
 ### Supported File Types
 
-The script supports the following file types:
+** The script supports the following file types: **
 
 Images: .jpg, .jpeg, .png, .gif, .webp, .bmp, .tiff, .tif, .ico, .svg
 Videos: .mp4, .mov, .avi, .wmv, .flv, .mkv, .webm
