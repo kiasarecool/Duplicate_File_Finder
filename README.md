@@ -6,7 +6,7 @@ This script is designed to process image and video files within a specified dire
 
 ### Supported File Types
 
-** The script supports the following file types: **
+**The script supports the following file types:**
 
 Images: .jpg, .jpeg, .png, .gif, .webp, .bmp, .tiff, .tif, .ico, .svg
 Videos: .mp4, .mov, .avi, .wmv, .flv, .mkv, .webm
